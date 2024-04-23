@@ -24,6 +24,17 @@ public class GetDataPostbyID {
                 .get(setApiEndPoint());
     }
 
+    @Step("I set API endpoint for post data with other ID")
+    public String setOtherApiEndPoint(){
+        return url + "2";
+    }
+
+    @Step("I send a request to retrieve the post data with that ID")
+    public void sendOtherDataPostRequestbyID(){
+        SerenityRest.given()
+                .get(setOtherApiEndPoint());
+    }
+
     @Step("I should receive the post data by ID")
     public void receivePostDatabyID(){
         JsonSchemaHelper helper = new JsonSchemaHelper();
