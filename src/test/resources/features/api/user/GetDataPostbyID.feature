@@ -19,4 +19,4 @@ Feature: Get data post by ID
         Given I set API endpoint for post data with other ID
         When I send a request to retrieve the post data with other ID
         And I receive status code 200
-        Then I should receive the post data by ID
+        Then I should receive the post data by that other ID

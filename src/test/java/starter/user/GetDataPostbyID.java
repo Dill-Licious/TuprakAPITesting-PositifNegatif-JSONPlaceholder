@@ -48,6 +48,17 @@ public class GetDataPostbyID {
         restAssuredThat(response -> response.body(matchesJsonSchema(schema)));
     }
 
+    @Step("I should receive the post data by that other ID")
+    public void receivePostDatabyOtherID(){
+        JsonSchemaHelper helper = new JsonSchemaHelper();
+        String schema = helper.getResponseSchema(JsonSchema.GET_DATA_POST_BY_ID_SCHEMA);
+
+        restAssuredThat(response -> response.body("userId", equalTo(2)));
+        restAssuredThat(response -> response.body("id", equalTo(2)));
+
+        restAssuredThat(response -> response.body(matchesJsonSchema(schema)));
+    }
+
     @Step("I set API endpoint for post data with an invalid ID")
     public String setApiEndPointInvalidID(){
         return url + "999";

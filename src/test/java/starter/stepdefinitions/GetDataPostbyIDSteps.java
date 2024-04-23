@@ -55,4 +55,9 @@ public class GetDataPostbyIDSteps {
     public void sendOtherPostDataByID(){
         getDataPostbyID.sendOtherDataPostRequestbyID();
     }
+
+    @Then("I should receive the post data by that other ID")
+    public void receivePostDatabyOtherID(){
+        getDataPostbyID.receivePostDatabyOtherID();
+    }
 }
