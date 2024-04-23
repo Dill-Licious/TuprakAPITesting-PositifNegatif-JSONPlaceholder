@@ -24,6 +24,17 @@ public class GetDataPostbyID {
                 .get(setApiEndPoint());
     }
 
+    @Step("I set API endpoint for post data with other ID")
+    public String setOtherApiEndPoint(){
+        return url + "2";
+    }
+
+    @Step("I send a request to retrieve the post data with that ID")
+    public void sendOtherDataPostRequestbyID(){
+        SerenityRest.given()
+                .get(setOtherApiEndPoint());
+    }
+
     @Step("I should receive the post data by ID")
     public void receivePostDatabyID(){
         JsonSchemaHelper helper = new JsonSchemaHelper();
@@ -33,6 +44,17 @@ public class GetDataPostbyID {
         restAssuredThat(response -> response.body("id", equalTo(1)));
         restAssuredThat(response -> response.body("title", equalTo("sunt aut facere repellat provident occaecati excepturi optio reprehenderit")));
         restAssuredThat(response -> response.body("body", equalTo("quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto")));
+
+        restAssuredThat(response -> response.body(matchesJsonSchema(schema)));
+    }
+
+    @Step("I should receive the post data by that other ID")
+    public void receivePostDatabyOtherID(){
+        JsonSchemaHelper helper = new JsonSchemaHelper();
+        String schema = helper.getResponseSchema(JsonSchema.GET_DATA_POST_BY_ID_SCHEMA);
+
+        restAssuredThat(response -> response.body("userId", equalTo(2)));
+        restAssuredThat(response -> response.body("id", equalTo(2)));
 
         restAssuredThat(response -> response.body(matchesJsonSchema(schema)));
     }

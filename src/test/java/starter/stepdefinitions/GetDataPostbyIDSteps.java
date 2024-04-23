@@ -45,4 +45,19 @@ public class GetDataPostbyIDSteps {
     public void receiveNullValue(){
         getDataPostbyID.receiveNullValue();
     }
+
+    @Given("I set API endpoint for post data with other ID")
+    public void setOtherIDAPIEndpoint(){
+        getDataPostbyID.setOtherApiEndPoint();
+    }
+
+    @When("I send a request to retrieve the post data with other ID")
+    public void sendOtherPostDataByID(){
+        getDataPostbyID.sendOtherDataPostRequestbyID();
+    }
+
+    @Then("I should receive the post data by that other ID")
+    public void receivePostDatabyOtherID(){
+        getDataPostbyID.receivePostDatabyOtherID();
+    }
 }
